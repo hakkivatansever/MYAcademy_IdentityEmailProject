@@ -35,7 +35,7 @@ namespace MYAcademy_IdentityEmailProject.Controllers
 
             if (result.Succeeded)
             {
-                return RedirectToAction("SignIn");
+                return RedirectToAction("SignIn","Login");
             }
 
             else
