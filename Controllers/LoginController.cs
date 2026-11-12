@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MYAcademy_IdentityEmailProject.Entities;
+using MYAcademy_IdentityEmailProject.Models;
 
 namespace MYAcademy_IdentityEmailProject.Controllers
 {
@@ -19,9 +20,16 @@ namespace MYAcademy_IdentityEmailProject.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SignIn()
+        public async Task<IActionResult> SignIn(UserLoginViewModel userLoginViewModel)
         {
-            return RedirectToAction("Inbox", "Message");
+            var result = await _signInManager.PasswordSignInAsync(userLoginViewModel.Username, userLoginViewModel.Password, false, false);
+            if(result.Succeeded)
+            {
+                return RedirectToAction("Inbox", "Message");
+            }
+
+            return View();
+            
         }
     }
 }
