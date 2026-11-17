@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MYAcademy_IdentityEmailProject.Context;
 
 namespace MYAcademy_IdentityEmailProject.Controllers
 {
+    [Authorize]
     public class MessageController : Controller
     {
         private readonly EmailContext _context;
